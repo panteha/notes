@@ -13,6 +13,10 @@
     notelistview.generateHtml()
   }
 
+  NoteController.prototype.createView = function(notelist){
+    (new NoteListView(notelist)).noteList;
+  }
+
   exports.NoteController = NoteController;
 
 })(this);
