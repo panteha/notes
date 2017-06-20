@@ -4,21 +4,14 @@
 
   var NoteController = function(notelist){
     this.notelist = notelist;
+    this.notelistview = new NoteListView(notelist);
   }
 
-  NoteController.prototype.insertHtml = function(){
-  }
-
-  NoteController.prototype.createView = function(var notelistview = new NoteListView(notelist)){
-    notelistview.generateHtml();
+  NoteController.prototype.createView = function(element){
+    element.innerHTML = this.notelistview.generateHtml();
   }
 
   exports.NoteController = NoteController;
 
 })(this);
 
-
-var elem = document.getElementById("app");
-notelist = new NoteList
-notecontroller = new NoteController(notelist)
-elem.innerHTML = notecontroller.insertHtml();

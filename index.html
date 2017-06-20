@@ -13,5 +13,12 @@
       <script src="./lib/note-list-view-model.js"></script>
       <script src="./lib/note-list-model.js"></script>
       <script src="./lib/note-model.js"></script>
+      <script type="text/javascript">
+        list = new NoteList
+        controller = new NoteController(list);
+        list.addNewNote("Congrats");
+        list.addNewNote("Pani");
+        controller.createView(app);
+      </script>
   </body>
 </html>
