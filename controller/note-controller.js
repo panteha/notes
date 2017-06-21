@@ -2,7 +2,8 @@
 
 (function(exports){
 
-  var NoteController = function(createNoteButton, notelist){
+  var NoteController = function(appElement, createNoteButton, notelist){
+    this.appElement = appElement;
     this.notelist = notelist;
     this.notelistview = new NoteListView(notelist);
     this.noteId = null;
@@ -11,20 +12,17 @@
       note_controller.onHashChange();
     };
     createNoteButton.onclick = function (event) {
-      console.log(event);
-      console.log(event.path[1]["0"].value);
-      note_controller.onSubmit();
-      event.preventDefault();
+      note_controller.onSubmit(event);
     };
   };
 
-  NoteController.prototype.createView = function(element){
+  NoteController.prototype.createView = function(){
     if (this.noteId == null) {
-      element.innerHTML = this.notelistview.generateHtml();
+      this.appElement.innerHTML = this.notelistview.generateHtml();
     } else {
       var note = this.notelist.notes[this.noteId]
       var noteView = new NoteView(note);
-      element.innerHTML = noteView.noteGenerateHtml();
+      this.appElement.innerHTML = noteView.noteGenerateHtml();
     }
   };
 
@@ -32,11 +30,15 @@
     // console.log(location.hash);
     // console.log(location.hash.substring(7,8));
     this.noteId = location.hash.substring(7,8);
-    this.createView(document.getElementById(id='app'));
+    this.createView(document.getElementById('app'));
   };
 
   NoteController.prototype.onSubmit = function(){
-    console.log('submit');
+    var newNote = event.path[1]["0"].value;
+    this.notelist.addNewNote(newNote);
+    this.createView();
+    event.path[1]["0"].value = "";
+    event.preventDefault();
   }
 
   exports.NoteController = NoteController;
