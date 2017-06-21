@@ -2,7 +2,7 @@
 
 (function(exports){
 
-  var NoteController = function(notelist){
+  var NoteController = function(createNoteButton, notelist){
     this.notelist = notelist;
     this.notelistview = new NoteListView(notelist);
     this.noteId = null;
@@ -10,7 +10,14 @@
     window.onhashchange = function() {
       note_controller.onHashChange();
     };
+    createNoteButton.onclick = function (event) {
+      console.log(event);
+      note_controller.onSubmit();
+      event.preventDefault();
+    };
   };
+
+
 
   NoteController.prototype.createView = function(element){
     if (this.noteId == null) {
@@ -28,6 +35,10 @@
     this.noteId = location.hash.substring(7,8);
     this.createView(document.getElementById(id='app'));
   };
+
+  NoteController.prototype.onSubmit = function(){
+    console.log('submit');
+  }
 
   exports.NoteController = NoteController;
 
