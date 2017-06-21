@@ -19,3 +19,13 @@ function testThatReturnsAllTheNoteObjects(){
 }
 
 testThatReturnsAllTheNoteObjects();
+
+function testThatReturnsEachSingleNoteUniqueId(){
+  var noteList = new NoteList();
+  noteList.addNewNote("1");
+  noteList.addNewNote("2");
+  assert.isTrue(noteList.showNotes()[0].id === 0);
+  assert.isTrue(noteList.showNotes()[1].id === 1);
+}
+
+testThatReturnsEachSingleNoteUniqueId();
