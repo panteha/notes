@@ -12,12 +12,11 @@
     };
     createNoteButton.onclick = function (event) {
       console.log(event);
+      console.log(event.path[1]["0"].value);
       note_controller.onSubmit();
       event.preventDefault();
     };
   };
-
-
 
   NoteController.prototype.createView = function(element){
     if (this.noteId == null) {
