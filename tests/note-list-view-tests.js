@@ -25,3 +25,12 @@ function testThatViewReturnsStringOfHtmlContainingListWithSeveralItems() {
 }
 
 testThatViewReturnsStringOfHtmlContainingListWithSeveralItems();
+
+function testThatViewReturnsStringOfHtmlContainingFirst20Character(){
+  var noteList = new NoteList();
+  noteList.addNewNote("1234567891011121314151617");
+  var noteListView = new NoteListView(noteList);
+  assert.isTrue(noteListView.generateHtml() === "<ul><li><div>12345678910111213141</div></li></ul>");
+}
+
+testThatViewReturnsStringOfHtmlContainingFirst20Character();
