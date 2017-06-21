@@ -8,6 +8,24 @@
   <body>
     <div id="app">hello</div>
 
+    <form id="text" action="#notes/create" method="post">
+      <textarea name="comment" rows="4" cols="50">
+      </textarea>
+      <button id="button" type="submit" name="Submit">Submit</button>
+    </form>
+
+
+
+  <script type="text/javascript">
+      document.getElementById("button").onclick = function () {
+          console.log("message");
+      };
+  </script>
+
+
+
+
+
       <script src="./controller/note-controller.js"></script>
       <script src="./lib/note-list-view-model.js"></script>
       <script src="./lib/note-list-model.js"></script>
